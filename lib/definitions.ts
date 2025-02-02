@@ -132,8 +132,8 @@ interface AirportCode {
     status: string;
     startTimeLocal: string;
     startTimeUTC: string;
-    startTime: string;
-    endTime: string;
+    startTime: number;
+    endTime: number;
     endTimeUTC: string;
     endTimeLocal: string;
     dist: number;

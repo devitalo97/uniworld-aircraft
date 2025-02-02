@@ -1,5 +1,5 @@
-export function formatDateToEN(dateString: string) {
-    const date = new Date(dateString);
+export function formatDateToEN(data: string | number) {
+    const date = new Date(data);
     return date.toLocaleString("en-US", {
       year: "2-digit",
       month: "2-digit",
