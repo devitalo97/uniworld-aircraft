@@ -1,17 +1,23 @@
-export function PageHeader(){
+export function PageHeader(input: { withTime: boolean }){
+    const { withTime } = input
     const today = new Date()
     return <div className="mx-auto flex items-center justify-between gap-x-8 lg:mx-0">
         <div className="flex items-center gap-x-6">
-        <img
-            alt=""
-            src="/uniworld_logo.png"
-            className="size-16 flex-none rounded-full ring-1 ring-gray-900/10"
-        />
+            <img
+                alt=""
+                src="/uniworld_logo.png"
+                className="size-16 flex-none rounded-full ring-1 ring-gray-900/10"
+            />
         <h1>
             <div className="text-sm/6 text-gray-500">
-            Flight List of {" "}{<time dateTime={today.toLocaleDateString()}>
-            {today.toLocaleDateString("es-PA")}
-            </time>}
+            Flight List {withTime ? <>
+                of {" "} 
+                {
+                    <time dateTime={today.toLocaleDateString()}>
+                        {today.toLocaleDateString("es-PA")}
+                    </time>
+                }
+            </> : <></>}
             </div>
             <div className="mt-1 text-base font-semibold text-gray-900">Uniworld AirCargo</div>
         </h1>
