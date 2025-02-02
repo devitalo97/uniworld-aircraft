@@ -1,4 +1,4 @@
-import { Table, TableBody, TableCaption, TableCell, TableFooter, TableHead, TableHeader, TableRow } from "@/components/ui/table";
+import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow } from "@/lib/components/ui/table";
 import { fetchFlightList } from "@/lib/action";
 import { formatDateToEN } from "@/lib/utils/format-date";
 
