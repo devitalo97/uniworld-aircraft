@@ -90,6 +90,12 @@ interface AirportCode {
     adepHandler?: Handler;
     adesHandler?: Handler;
   }
+
+  interface FlightWatch {
+    onBlock?: number
+    offBlock?: number
+    statusId: string
+  }
   
   interface JourneyLog {
     acft: Aircraft;
@@ -130,25 +136,12 @@ interface AirportCode {
   interface Flight {
     flightNid: string;
     status: string;
-    startTimeLocal: string;
-    startTimeUTC: string;
     startTime: number;
     endTime: number;
-    endTimeUTC: string;
-    endTimeLocal: string;
-    dist: number;
     startAirport: Airport;
     endAirport: Airport;
-    trip?: Trip;
     acft?: Aircraft;
-    flightRules: string;
-    icaoType: string;
-    isCommercial: boolean;
-    isCnl: boolean;
-    passengerList?: PassengerList;
-    crewList?: CrewList[];
-    legHandling?: LegHandling;
-    journeyLog?: JourneyLog;
+    flightWatch: FlightWatch;
   }
   
   
