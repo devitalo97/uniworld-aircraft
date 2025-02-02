@@ -2,14 +2,20 @@ import { gql } from "@apollo/client";
 
 export const FLIGHT_LIST_QUERY = gql`
   query FlightList(
-    $start: DateTime!,
-    $end: DateTime!
+    $startTimeInterval: DateTime!
+    $endTimeInterval: DateTime!
+    $flightType: [FlightType!]
+    $flightStatus: [FlightStatus!]
+    $aircraftNidList: [AircraftNid!]
   ) {
     flightList(filter: {
       timeInterval: {
-        start: $start
-        end: $end
-      }
+        start: $startTimeInterval
+        end: $endTimeInterval
+      },
+      flightType: $flightType,
+      flightStatus: $flightStatus,
+      aircraftNidList: $aircraftNidList
     }) {
       flightNid
       status
