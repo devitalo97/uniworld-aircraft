@@ -4,7 +4,7 @@ import { Badge } from "@/lib/components/ui/badge";
 import { ScrollArea } from "@/lib/components/ui/scroll-area";
 import { cn } from "@/lib/utils";
 
-export function FlightListTable(input: {flightList: Flight[]}){
+export function FlightTable(input: {flightList: Flight[]}){
   const { flightList } = input
     return <ScrollArea>
     <Table>
@@ -12,7 +12,7 @@ export function FlightListTable(input: {flightList: Flight[]}){
       <TableHeader>
         <TableRow>
           <TableHead className="text-sm font-semibold text-gray-900 whitespace-nowrap  w-[100px]">Logo</TableHead>
-          <TableHead className="text-sm font-semibold text-gray-900 whitespace-nowrap">Confirmation Status</TableHead>
+          <TableHead className="text-sm font-semibold text-gray-900 whitespace-nowrap">Flight Status</TableHead>
           <TableHead className="text-sm font-semibold text-gray-900 whitespace-nowrap">Operational Status</TableHead>
           <TableHead className="text-sm font-semibold text-gray-900 whitespace-nowrap">Flight Number</TableHead>
           <TableHead className="text-sm font-semibold text-gray-900 whitespace-nowrap">Departure time</TableHead>

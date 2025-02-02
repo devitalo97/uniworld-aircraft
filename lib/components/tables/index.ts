@@ -1,1 +1,1 @@
-export * from "./flight-list"
+export * from "./flight.table"
