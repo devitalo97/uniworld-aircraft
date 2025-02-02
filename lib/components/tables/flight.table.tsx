@@ -33,10 +33,10 @@ export function FlightTable(input: {flightList: Flight[]}){
           <TableCell>
             <Badge className={cn(
               "capitalize",
-              flight.status === "CONFIRMED" ? "bg-green-400" :
-              flight.status === "OPTION" ? "bg-yellow-400" :
-              flight.status === "OPPORTUNITY" ? "bg-blue-400" :
-              "bg-gray-400"
+              flight.status === "CONFIRMED" ? "bg-green-400 hover:bg-green-500" :
+              flight.status === "OPTION" ? "bg-yellow-400 hover:bg-yellow-500" :
+              flight.status === "OPPORTUNITY" ? "bg-blue-400 hover:bg-blue-500" :
+              "bg-gray-400 hover:bg-gray-500"
             )}>
               {flight.status.toLowerCase()}
             </Badge>
@@ -44,11 +44,11 @@ export function FlightTable(input: {flightList: Flight[]}){
           <TableCell>
           <Badge className={cn(
             "capitalize",
-            flight.flightWatch?.statusId === "S" ? "bg-yellow-400" :  // Slot (Aguardando autorização)
-            flight.flightWatch?.statusId === "A" ? "bg-blue-400" :    // Airborne (Em voo)
-            flight.flightWatch?.statusId === "+" ? "bg-green-400" :   // Finished (Finalizado)
-            flight.flightWatch?.statusId === "D" ? "bg-red-400" :     // Delayed (Atrasado)
-            "bg-gray-400"
+            flight.flightWatch?.statusId === "S" ? "bg-yellow-400 hover:bg-yellow-500" :  // Slot (Aguardando autorização)
+            flight.flightWatch?.statusId === "A" ? "bg-blue-400 hover:bg-blue-500" :    // Airborne (Em voo)
+            flight.flightWatch?.statusId === "+" ? "bg-green-400 hover:bg-green-500" :   // Finished (Finalizado)
+            flight.flightWatch?.statusId === "D" ? "bg-red-400 hover:bg-red-500" :     // Delayed (Atrasado)
+            "bg-gray-400 hover:bg-gray-500"
           )}>
             {flight.flightWatch?.statusId === "S" ? "Slot" :
             flight.flightWatch?.statusId === "A" ? "Airborne" :
