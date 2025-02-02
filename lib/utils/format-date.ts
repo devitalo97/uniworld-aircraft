@@ -1,5 +1,5 @@
 export function formatDate(input: {
-  date: string | number,
+  date: string | number | Date,
   locales?: Intl.LocalesArgument, 
   options?: Intl.DateTimeFormatOptions
 }) {
