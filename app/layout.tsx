@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
+import HolyLoader from "holy-loader";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -28,6 +29,12 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+        <HolyLoader
+          color="linear-gradient(to right, #002B80, #D72528)"
+          speed={250}
+          easing="linear"
+          showSpinner
+        />
         {children}
       </body>
     </html>
