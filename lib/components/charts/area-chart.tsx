@@ -106,16 +106,16 @@ interface DynamicAreaChartProps {
  */
 export function AreaChart({
   data,
-  nameKey = "name",        // ex.: "month", "category", etc.
-  numericKeys = ["value"],  // chaves numéricas (pode ter 1 ou várias)
-  title = "Area Chart - Stacked",
-  description = "Showing total visitors for the last 6 months",
-  trendingLabel = "Trending up by 5.2% this month",
-  footerLabel = "January - June 2024",
+  nameKey,        // ex.: "month", "category", etc.
+  numericKeys,  // chaves numéricas (pode ter 1 ou várias)
+  title = "",
+  description = "",
+  trendingLabel = "",
+  footerLabel = "",
   className = "",
   config,
-  fillOpacity = 0.4,
-  stacked = true,
+  fillOpacity,
+  stacked,
   xAxisFormatter,
 }: DynamicAreaChartProps) {
   // Cores padrões caso nenhuma config seja passada.
@@ -137,7 +137,7 @@ export function AreaChart({
   const dynamicChartConfig: ChartConfig = React.useMemo(() => {
     const result: ChartConfig = {}
 
-    numericKeys.forEach((key, index) => {
+    numericKeys?.forEach((key, index) => {
       const color = config?.[key]?.color ?? defaultColors[index % defaultColors.length]
       result[key] = {
         label: config?.[key]?.label ?? key,
@@ -155,7 +155,7 @@ export function AreaChart({
    * Renderiza uma <Area> para cada chave em `numericKeys`.
    */
   const renderAreas = () => {
-    return numericKeys.map((key, index) => {
+    return numericKeys?.map((key, index) => {
       const color = dynamicChartConfig[key]?.color ?? defaultColors[index % defaultColors.length]
       return (
         <Area
@@ -228,7 +228,6 @@ export function AreaChart({
           <div className="grid gap-2">
             <div className="flex items-center gap-2 font-medium leading-none">
               {trendingLabel}
-              <TrendingUp className="h-4 w-4" />
             </div>
             <div className="flex items-center gap-2 leading-none text-muted-foreground">
               {footerLabel}

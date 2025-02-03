@@ -3,6 +3,7 @@ import { formatDate } from "@/lib/utils/format-date";
 import { Badge } from "@/lib/components/ui/badge";
 import { ScrollArea } from "@/lib/components/ui/scroll-area";
 import { cn } from "@/lib/utils";
+import { Flight } from "@/lib/definitions";
 
 export function FlightTable(input: {flightList: Flight[]}){
   const { flightList } = input

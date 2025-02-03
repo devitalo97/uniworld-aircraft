@@ -155,18 +155,23 @@ export function BarChart({
    * Renderiza <Bar> para cada chave numérica.
    */
   const renderBars = () => {
-    return numericKeys.map((key, index) => {
-      const color = dynamicChartConfig[key]?.color ?? defaultColors[index]
+    const colors = ["#FF5733", "#33FF57", "#3357FF", "#F39C12", "#8E44AD"]; // Paleta de cores
+  
+    // Renderiza cada barra com base nos dados
+    return data.map((entry, index) => {
+      const color = colors[index % colors.length]; // Seleciona a cor com base no índice
       return (
         <Bar
-          key={key}
-          dataKey={key}
-          fill={color}
+          key={entry[nameKey]} // Usa o nome da chave como identificador
+          dataKey="count" // Chave dos valores numéricos
+          name={entry[nameKey]} // Nome da barra (opcional para tooltip)
+          fill={color} // Cor da barra
           radius={barRadius}
         />
-      )
-    })
-  }
+      );
+    });
+  };
+  
 
   /**
    * Formata o valor do eixo X (categorias),
