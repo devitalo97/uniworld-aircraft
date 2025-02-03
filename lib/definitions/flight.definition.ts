@@ -133,7 +133,7 @@ interface AirportCode {
     enginesCycles: number;
   }
   
-  interface Flight {
+export interface Flight {
     flightNid: string;
     status: string;
     startTime: number;

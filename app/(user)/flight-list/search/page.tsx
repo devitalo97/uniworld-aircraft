@@ -2,7 +2,7 @@ import { fetchFlightList } from "@/lib/action";
 import { getCurrentDateInterval } from "@/lib/utils";
 import { FlightTable } from "@/lib/components/tables";
 import { PageHeader } from "@/lib/components/page-header";
-import { FlightSearchForm } from "@/lib/components/forms/flight.search.form";
+import { FlightSearchForm } from "@/lib/components/forms";
 
 interface Params {
   searchParams: {
