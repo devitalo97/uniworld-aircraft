@@ -37,29 +37,6 @@ export function groupFlightsByAircraft(flights: Flight[]) {
     }));
   }
 
-
-export function groupFlightsByStatus(flights: Flight[]) {
-    const groups: Record<string, number> = {};
-  
-    flights.forEach((flight) => {
-      const status = flight.status || "UNKNOWN";
-      if (!groups[status]) {
-        groups[status] = 0;
-      }
-      groups[status]++;
-    });
-  
-    // Exemplo de retorno para o PieChart
-    // Ele precisa de algo como: [{ status: "COMPLETED", value: 10 }, ...]
-    return Object.entries(groups).map(([status, value]) => ({
-      status,
-      value,
-    }));
-  }
-  
-// Interface para os dados agrupados por data e por tipo de aeronave.
-// A propriedade "date" é obrigatória e as demais chaves (tipo de aeronave)
-// terão valores numéricos representando a contagem.
 export interface GroupedFlightData {
 date: string;
 [aircraftType: string]: number | string;
@@ -115,7 +92,6 @@ const result: GroupedFlightData[] = sortedDates.map((dayStr) => {
 return result;
 }
 
-
 export function groupFlightsByOriginAirport(flights: Flight[]) {
     const groups: Record<string, number> = {};
   
@@ -134,6 +110,11 @@ export function groupFlightsByOriginAirport(flights: Flight[]) {
       value,
     }));
   }
+
+export function getFlightDurationMinutes(start: number, end: number) {
+    const diff = new Date(end * 1000).getTime() - new Date(start * 1000).getTime();
+    return diff / 1000 / 60; // minutos
+}
   
 
   

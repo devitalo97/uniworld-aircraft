@@ -14,8 +14,6 @@ interface Params {
   }
 }
 
-export const revalidate = 60
-
 export default async function FlightListWithSearch(params: Params) {
   const { start, end } = getCurrentDateInterval()
   const {

@@ -11,7 +11,7 @@ import {
     TimerOff,
     Timer,
   } from "lucide-react";
-import { groupFlightsByAircraft, groupFlightsByDate, groupFlightsByDateAndType, groupFlightsByOriginAirport, groupFlightsByStatus } from "./util";
+import { getFlightDurationMinutes, groupFlightsByAircraft, groupFlightsByDate, groupFlightsByDateAndType, groupFlightsByOriginAirport } from "./util";
   
 interface Params {
     searchParams: {
@@ -23,7 +23,7 @@ interface Params {
     }
   }
 
-export const revalidate = 60
+export const revalidate = 360
 
 export default async function Dashboard(params: Params) {
   const { start, end } = getCurrentDateInterval()
@@ -35,8 +35,8 @@ export default async function Dashboard(params: Params) {
   } = params
 
   const flightList = await fetchFlightList({
-    startTimeInterval: startTimeInterval ?? "2025-01-01",
-    endTimeInterval: endTimeInterval ?? "2025-02-01",
+    startTimeInterval: startTimeInterval ?? start,
+    endTimeInterval: endTimeInterval ?? end,
     flightType: [],
     flightStatus: [],
     aircraftNidList: []
@@ -63,20 +63,15 @@ export default async function Dashboard(params: Params) {
     const delayedFlights = flightList.filter(f =>
         f.flightWatch?.statusId === "D"
     ).length;
-
+    console.log(flightList)
     // 4. Tempo médio de voo (exemplo simplificado)
-    function getFlightDurationMinutes(start: number, end: number) {
-        const diff = new Date(end).getTime() - new Date(start).getTime();
-        return diff / 1000 / 60; // minutos
-    }
     const totalDuration = flightList.reduce((acc, flight) => {
-        return acc + getFlightDurationMinutes(flight.flightWatch?.onBlock ?? 0, flight.flightWatch?.offBlock ?? 0);
+        return acc + getFlightDurationMinutes(flight.flightWatch?.offBlock ?? 0, flight.flightWatch?.onBlock ?? 0);
     }, 0);
 
     const avgFlightDuration = flightList.length > 0
         ? totalDuration / flightList.length
         : 0;
-
         const cardsData = [
             {
               title: "Total Flights",
@@ -116,7 +111,6 @@ export default async function Dashboard(params: Params) {
     const flightsByOriginAirport = groupFlightsByOriginAirport(flightList);
     const flightsByDateAndType = groupFlightsByDateAndType(flightList)
 
-
     return <>
         <div className="px-4 py-10 sm:px-6 lg:px-8">
             <div className="md:flex md:items-center md:justify-between">
@@ -149,46 +143,35 @@ export default async function Dashboard(params: Params) {
         ))}
         </div>
         <div className="px-4 pb-10 sm:px-6 lg:px-8 flex flex-col lg:flex-row gap-4">
-            
-            <AreaChart
-              data={flightsByDay}
-              nameKey="date"
-              numericKeys={["flights"]}
-              title="Voos por Dia"
-              description="Evolução diária de voos"
-              stacked={false} 
-              fillOpacity={0.3}
-            />
-            <BarChart
-              data={flightsByAircraft}
-              nameKey="registration"
-              numericKeys={["count"]}
-              title="Voos por Aeronave"
-              description="Distribuição de voos por registro de aeronave"
-              barRadius={6}
-              config={{
-                count: { label: "HP1939", color: "#3498DB" }, // Azul
-              }}
-            />
-            <PieChart
-              data={flightsByOriginAirport}
-              dataKey="value" // valor numérico (quantidade de voos)
-              nameKey="airport" // rótulo (nome/identificador do aeroporto)
-              title="Distribuição por Aeroporto de Origem"
-              description="Proporção de voos por aeroporto de origem"
-              className="max-w-md mx-auto"
-            />
-        </div>
-        <div className="px-4 pb-10 sm:px-6 lg:px-8">
         <AreaChart
-          data={flightsByDateAndType} // Certifique-se de que está correto
+          data={flightsByDay}
           nameKey="date"
-          numericKeys={["HP1939", "HP1938"]} // Certifique-se de que as chaves correspondem
-          title="Voos por Dia e por Tipo de Aeronave"
-          description="Evolução diária dos voos empilhada por matrícula"
+          numericKeys={["flights"]}
+          title="Flights per Day"
+          description="Daily flight evolution"
+          stacked={false}
           fillOpacity={0.3}
-      />
+        />
+        <BarChart chartData={flightsByAircraft}/>
+        <PieChart
+          data={flightsByOriginAirport}
+          dataKey="value" // numeric value (number of flights)
+          nameKey="airport" // label (airport name/identifier)
+          title="Origin Airport Distribution"
+          description="Proportion of flights by origin airport"
+          className="max-w-md mx-auto"
+        />
+      </div>
+      <div className="px-4 pb-10 sm:px-6 lg:px-8">
+        <AreaChart
+          data={flightsByDateAndType} // Ensure this is correct
+          nameKey="date"
+          numericKeys={["HP1939", "HP1938"]} // Ensure the keys match
+          title="Flights per Day by Aircraft Type"
+          description="Daily evolution of flights stacked by registration"
+          fillOpacity={0.3}
+        />
+</div>
 
-        </div>
     </>
 }
