@@ -20,7 +20,7 @@ import { useFormState } from "react-dom";
 
 const FormSchema = z.object({
   email: z.string().email(),
-  password: z.string().min(6, { message: "Password needs at least 6 characters" }),
+  password: z.string().min(7, { message: "Password needs at least 7 characters" }),
 });
 
 export function LoginForm() {

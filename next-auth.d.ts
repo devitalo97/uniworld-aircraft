@@ -6,14 +6,14 @@ declare module "next-auth" {
       email: string;
       created_at: Date;
       id: string;
-      role: "user", "admin", "moderator";
+      role: "user" | "admin" | "moderator"
     }
   }
 
   interface User {
     email: string;
-    created_at: Date;
     id: string;
-    role: "user", "admin", "moderator";
+    role: "user" | "admin" | "moderator";
+    created_at: Date
   }
 }

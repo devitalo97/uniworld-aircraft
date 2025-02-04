@@ -8,7 +8,7 @@ export const authConfig = {
   callbacks: {
     authorized({ auth, request: { nextUrl } }) {
       const isLoggedIn = !!auth?.user;
-      const isProtectedRoute = ["/", "/dashboard", "/flight"].some(route => {
+      const isProtectedRoute = ["/", "/dashboard", "/flight", "/configuration"].some(route => {
         if(route === "/"){
             return nextUrl.pathname === route
         }else{
@@ -21,7 +21,7 @@ export const authConfig = {
       }
       
       if (isLoggedIn) {
-        return Response.redirect(new URL('/flight', nextUrl));
+        return Response.redirect(new URL('/flight-list', nextUrl));
       }
       
       return true;
@@ -34,7 +34,7 @@ export const authConfig = {
     },
     session({ session, token }) {
       session.user.id = String(token.id);
-      session.user.role = token.role as "user", "admin", "moderator";
+      session.user.role = token.role as "user" | "admin" | "moderator";
       return session;
     }
   },
