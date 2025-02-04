@@ -19,22 +19,22 @@ export function UserTable({ users }: { users: User[] }) {
       <Table>
         <TableHeader>
           <TableRow>
-            <TableHead className="text-sm font-semibold text-gray-900 whitespace-nowrap">Name</TableHead>
-            <TableHead className="text-sm font-semibold text-gray-900 whitespace-nowrap">Email</TableHead>
-            <TableHead className="text-sm font-semibold text-gray-900 whitespace-nowrap">Role</TableHead>
-            <TableHead className="text-sm font-semibold text-gray-900 whitespace-nowrap">Action</TableHead>
+            <TableHead>Name</TableHead>
+            <TableHead>Email</TableHead>
+            <TableHead>Role</TableHead>
+            <TableHead>Action</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
           {users.map((user) => (
             <TableRow key={user.id}>
-              <TableCell className="text-sm font-medium text-gray-900">{user.name}</TableCell>
-              <TableCell className="text-gray-500">{user.email}</TableCell>
-              <TableCell className="text-gray-500 capitalize">{user.role}</TableCell>
+              <TableCell className="font-medium">{user.name}</TableCell>
+              <TableCell>{user.email}</TableCell>
+              <TableCell className="capitalize">{user.role}</TableCell>
               <TableCell>
                 <button
                   onClick={() => handleDelete(user.id)}
-                  className="font-semibold text-indigo-600 hover:text-indigo-500"
+                  className="font-semibold text-blue-600 hover:text-blue-500"
                   disabled={isPending}
                 >
                   Delete

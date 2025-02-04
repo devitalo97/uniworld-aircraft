@@ -47,10 +47,8 @@ export function useFlightSearchForm(props: Props){
 
     const onSubmit = handleSubmit((data) => {
         const { timeInterval, ...rest } = data
-        console.log('data', data)
         const startTimeInterval = timeInterval?.from
         const endTimeInterval = timeInterval?.to
-        console.log('timeInterval', timeInterval)
         updateUrl({
             ...rest,
             startTimeInterval,

@@ -138,7 +138,7 @@ export function UserCreateForm() {
         {/* Botão de Cadastro */}
         <Button className="mt-4 w-fit" aria-disabled={isPending}>
           {isPending ? "Signing up..." : "Sign Up"}
-          <ArrowRightIcon className="ml-auto h-5 w-5 text-gray-50" />
+          <ArrowRightIcon className="ml-auto h-5 w-5 text-gray-50 dark:text-gray-900" />
         </Button>
 
         {/* Mensagem de Erro */}

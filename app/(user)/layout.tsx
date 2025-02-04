@@ -1,16 +1,18 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
-import "./globals.css";
+import "../globals.css";
 import HolyLoader from "holy-loader";
 import { Toaster } from "@/lib/components/ui/toaster"
+import { SidebarProvider, SidebarTrigger } from "@/lib/components/ui/sidebar";
+import { AppSidebar } from "@/lib/components/app-sidebar";
 
 const geistSans = localFont({
-  src: "./fonts/GeistVF.woff",
+  src: "../fonts/GeistVF.woff",
   variable: "--font-geist-sans",
   weight: "100 900",
 });
 const geistMono = localFont({
-  src: "./fonts/GeistMonoVF.woff",
+  src: "../fonts/GeistMonoVF.woff",
   variable: "--font-geist-mono",
   weight: "100 900",
 });
@@ -26,7 +28,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className="dark">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
@@ -36,7 +38,13 @@ export default function RootLayout({
           easing="linear"
           showSpinner
         />
-        {children}
+        <SidebarProvider defaultOpen={false}>
+        <AppSidebar />
+          <main className="w-full">
+            <SidebarTrigger />
+            {children}
+          </main>
+        </SidebarProvider>
         <Toaster />
       </body>
     </html>

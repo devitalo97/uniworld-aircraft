@@ -12,17 +12,17 @@ export function FlightTable(input: {flightList: Flight[]}){
       <TableCaption>Uniworld Aircargo</TableCaption>
       <TableHeader>
         <TableRow>
-          <TableHead className="text-sm font-semibold text-gray-900 whitespace-nowrap  w-[100px]">Logo</TableHead>
-          <TableHead className="text-sm font-semibold text-gray-900 whitespace-nowrap">Flight Status</TableHead>
-          <TableHead className="text-sm font-semibold text-gray-900 whitespace-nowrap">Operational Status</TableHead>
-          <TableHead className="text-sm font-semibold text-gray-900 whitespace-nowrap">Flight Number</TableHead>
-          <TableHead className="text-sm font-semibold text-gray-900 whitespace-nowrap">Departure time</TableHead>
-          <TableHead className="text-sm font-semibold text-gray-900 whitespace-nowrap">Arrival time</TableHead>
-          <TableHead className="text-sm font-semibold text-gray-900 whitespace-nowrap">Departure Official time</TableHead>
-          <TableHead className="text-sm font-semibold text-gray-900 whitespace-nowrap">Arrival Official time</TableHead>
-          <TableHead className="text-sm font-semibold text-gray-900 whitespace-nowrap">Origin</TableHead>
-          <TableHead className="text-sm font-semibold text-gray-900 whitespace-nowrap">Destination</TableHead>
-          <TableHead className="text-sm font-semibold text-gray-900 whitespace-nowrap text-right">Aircraft</TableHead>
+          <TableHead className="w-[100px]">Logo</TableHead>
+          <TableHead>Flight Status</TableHead>
+          <TableHead>Operational Status</TableHead>
+          <TableHead>Flight Number</TableHead>
+          <TableHead>Departure time</TableHead>
+          <TableHead>Arrival time</TableHead>
+          <TableHead>Departure Official time</TableHead>
+          <TableHead>Arrival Official time</TableHead>
+          <TableHead>Origin</TableHead>
+          <TableHead>Destination</TableHead>
+          <TableHead className=" text-right">Aircraft</TableHead>
         </TableRow>
       </TableHeader>
       <TableBody>
@@ -58,22 +58,22 @@ export function FlightTable(input: {flightList: Flight[]}){
             "Unknown"}
           </Badge>
         </TableCell>
-          <TableCell className="text-sm font-medium text-gray-900">{flight.flightNid}</TableCell>
-          <TableCell className="text-gray-500">{formatDate({date: flight.startTime*1000, locales: "es-PA", options: {timeZone: "America/Panama"}})}</TableCell>
-          <TableCell className="text-gray-500">{formatDate({date: flight.endTime*1000, locales: "es-PA", options: {timeZone: "America/Panama"}})}</TableCell>
-          <TableCell className="text-gray-500">
+          <TableCell className="font-medium">{flight.flightNid}</TableCell>
+          <TableCell>{formatDate({date: flight.startTime*1000, locales: "es-PA", options: {timeZone: "America/Panama"}})}</TableCell>
+          <TableCell>{formatDate({date: flight.endTime*1000, locales: "es-PA", options: {timeZone: "America/Panama"}})}</TableCell>
+          <TableCell>
           {flight?.flightWatch?.offBlock
             ? formatDate({ date: flight.flightWatch.offBlock * 1000, locales: "es-PA", options: { timeZone: "America/Panama" } })
             : "N/A"}
         </TableCell>
-        <TableCell className="text-gray-500">
+        <TableCell>
           {flight?.flightWatch?.onBlock
             ? formatDate({ date: flight.flightWatch.onBlock * 1000, locales: "es-PA", options: { timeZone: "America/Panama" } })
             : "N/A"}
         </TableCell>
-          <TableCell className="text-gray-500">{flight.startAirport.code.icao}</TableCell>
-          <TableCell className="text-gray-500">{flight.endAirport.code.icao}</TableCell>
-          <TableCell className="text-right text-gray-500">{flight.acft?.registration || "N/A"}</TableCell>
+          <TableCell>{flight.startAirport.code.icao}</TableCell>
+          <TableCell>{flight.endAirport.code.icao}</TableCell>
+          <TableCell className="text-right ">{flight.acft?.registration || "N/A"}</TableCell>
         </TableRow>
         ))}
       </TableBody>

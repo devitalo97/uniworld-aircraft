@@ -21,7 +21,7 @@ export const authConfig = {
       }
       
       if (isLoggedIn) {
-        return Response.redirect(new URL('/flight-list', nextUrl));
+        return Response.redirect(new URL('/dashboard', nextUrl));
       }
       
       return true;
