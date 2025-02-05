@@ -3,8 +3,6 @@ import localFont from "next/font/local";
 import "../globals.css";
 import HolyLoader from "holy-loader";
 import { Toaster } from "@/lib/components/ui/toaster"
-import { SidebarProvider, SidebarTrigger } from "@/lib/components/ui/sidebar";
-import { AppSidebar } from "@/lib/components/app-sidebar";
 
 const geistSans = localFont({
   src: "../fonts/GeistVF.woff",

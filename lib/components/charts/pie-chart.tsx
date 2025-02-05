@@ -1,14 +1,12 @@
 "use client"
 
 import * as React from "react"
-import { TrendingUp } from "lucide-react"
 import { Pie, PieChart as RePieChart } from "recharts"
 
 import {
   Card,
   CardContent,
   CardDescription,
-  CardFooter,
   CardHeader,
   CardTitle,
 } from "@/lib/components/ui/card"
@@ -77,8 +75,6 @@ export function PieChart({
   nameKey = "name",
   title = "Pie Chart - Donut",
   description = "January - June 2024",
-  trendingLabel = "Trending up by 5.2% this month",
-  footerLabel = "Showing total visitors for the last 6 months",
   className = "",
 }: DynamicPieChartProps) {
   /**

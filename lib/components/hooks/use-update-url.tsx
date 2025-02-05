@@ -5,7 +5,7 @@ export function useUpdateUrl() {
   const pathname = usePathname();
   const searchParams = useSearchParams();
 
-  const updateUrl = (params: Record<string, any | null>, replace = false) => {
+  const updateUrl = (params: Record<string, any>, replace = false) => {
     const currentParams = new URLSearchParams(searchParams.toString());
 
     Object.entries(params).forEach(([key, value]) => {

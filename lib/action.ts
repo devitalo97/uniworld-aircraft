@@ -7,7 +7,6 @@ import { FLIGHT_LIST_QUERY } from "./graphql/queries";
 import { neon } from "@neondatabase/serverless";
 import { AuthError } from "next-auth";
 import bcrypt from "bcrypt"
-import { redirect } from "next/navigation";
 import { revalidatePath } from "next/cache";
 
 export async function fetchFlightList(input: {
@@ -74,7 +73,7 @@ export async function createOneUser(
     const hashedPassword = await bcrypt.hash(password, 10);
 
     // Inserindo novo usuário no banco
-    const newUser = await sql`
+    await sql`
       INSERT INTO "user" (email, name, password, role, created_at) 
       VALUES (${email}, ${name}, ${hashedPassword}, ${role}, NOW()) 
       RETURNING id, name, email, created_at;

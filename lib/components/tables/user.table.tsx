@@ -1,6 +1,6 @@
 "use client";
 import { useTransition } from "react";
-import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow } from "@/lib/components/ui/table";
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/lib/components/ui/table";
 import { ScrollArea } from "@/lib/components/ui/scroll-area";
 import { User } from "@/lib/definitions";
 import { deleteUserById } from "@/lib/action";

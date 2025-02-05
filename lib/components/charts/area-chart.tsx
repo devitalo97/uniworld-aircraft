@@ -1,14 +1,11 @@
 "use client"
 
 import * as React from "react"
-import { TrendingUp } from "lucide-react"
 import {
   AreaChart as ReAreaChart,
   Area,
   CartesianGrid,
   XAxis,
-  YAxis,
-  ResponsiveContainer,
 } from "recharts"
 
 import {
