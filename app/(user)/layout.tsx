@@ -5,6 +5,7 @@ import HolyLoader from "holy-loader";
 import { Toaster } from "@/lib/components/ui/toaster"
 import { SidebarProvider, SidebarTrigger } from "@/lib/components/ui/sidebar";
 import { AppSidebar } from "@/lib/components/app-sidebar";
+import { ThemeProvider } from "@/lib/components/theme-provider";
 
 const geistSans = localFont({
   src: "../fonts/GeistVF.woff",
@@ -28,10 +29,16 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="dark">
+    <html lang="en">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+        <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
+          >
         <HolyLoader
           color="linear-gradient(to right, #002B80, #D72528)"
           speed={250}
@@ -45,6 +52,8 @@ export default function RootLayout({
             {children}
           </main>
         </SidebarProvider>
+        </ThemeProvider>
+
         <Toaster />
       </body>
     </html>

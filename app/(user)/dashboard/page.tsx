@@ -1,8 +1,8 @@
 import { fetchFlightList } from "@/lib/action";
-import { AreaChart, chartData, BarChart, PieChart } from "@/lib/components/charts";
+import { AreaChart, BarChart, PieChart } from "@/lib/components/charts";
 import { FlightSearchForm } from "@/lib/components/forms";
 import { Card, CardHeader, CardTitle } from "@/lib/components/ui/card";
-import { getCurrentDateInterval } from "@/lib/utils";
+import { getLast7DaysInterval } from "@/lib/utils";
 import {
     Plane,
     CheckCircle,
@@ -26,7 +26,7 @@ interface Params {
 export const revalidate = 360
 
 export default async function Dashboard(params: Params) {
-  const { start, end } = getCurrentDateInterval()
+  const { start, end } = getLast7DaysInterval()
   const {
     searchParams: {
       startTimeInterval,
@@ -63,7 +63,7 @@ export default async function Dashboard(params: Params) {
     const delayedFlights = flightList.filter(f =>
         f.flightWatch?.statusId === "D"
     ).length;
-    console.log(flightList)
+
     // 4. Tempo médio de voo (exemplo simplificado)
     const totalDuration = flightList.reduce((acc, flight) => {
         return acc + getFlightDurationMinutes(flight.flightWatch?.offBlock ?? 0, flight.flightWatch?.onBlock ?? 0);

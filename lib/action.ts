@@ -1,6 +1,6 @@
 "use server"
 
-import { signIn } from "@/auth";
+import { signIn, signOut } from "@/auth";
 import { getClient } from "./apllo-client";
 import { Flight, User } from "./definitions";
 import { FLIGHT_LIST_QUERY } from "./graphql/queries";
@@ -137,6 +137,10 @@ export async function authenticate(
     }
     throw error;
   }
+}
+
+export async function logout() {
+  await signOut({ redirectTo: '/login' });
 }
 
 
