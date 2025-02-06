@@ -55,7 +55,7 @@ export function FlightTable({ flightList }: { flightList: Flight[] }) {
                   <img
                     src="https://uniworldaircargo.com/wp-content/uploads/2022/01/Asset-1@4x-1-1.png"
                     alt="Enterprise Logo"
-                    className="h-8 w-auto object-contain rounded-md"
+                    className="h-8 w-auto object-contain rounded-md dark:bg-slate-50 dark:p-1"
                   />
                 </TableCell>
 
