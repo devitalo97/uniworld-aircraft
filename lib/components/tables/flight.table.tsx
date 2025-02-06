@@ -141,8 +141,8 @@ export function FlightTable({ flightList }: { flightList: Flight[] }) {
                     : "N/A"}
                 </TableCell>
 
-                <TableCell>{flight.startAirport.city} ({flight.startAirport.code.icao})</TableCell>
-                <TableCell>{flight.endAirport.city} ({flight.endAirport.code.icao})</TableCell>
+                <TableCell>{flight.startAirport.code.icao}: {flight.startAirport.city}</TableCell>
+                <TableCell>{flight.endAirport.code.icao}: {flight.endAirport.city}</TableCell>
                 <TableCell className="text-right">{flight.acft?.registration || "N/A"}</TableCell>
               </TableRow>
             );
