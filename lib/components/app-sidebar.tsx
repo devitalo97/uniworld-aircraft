@@ -1,3 +1,5 @@
+"use client"
+
 import { Home, Plane, Search, Settings } from "lucide-react"
 
 import {
@@ -13,6 +15,7 @@ import {
 import { PowerIcon } from "@heroicons/react/24/outline"
 import { logout } from "../action"
 import { ModeToggle } from "./theme-toggle"
+import { useRouter } from "next/navigation"
 
 // Itens do menu.
 const items = [
@@ -39,6 +42,7 @@ const items = [
 ]
 
 export function AppSidebar() {
+  const router = useRouter()
   return (
     // Aqui garantimos que a sidebar ocupe toda a altura e organize os elementos em coluna.
     <Sidebar className="flex flex-col h-full">
@@ -59,7 +63,10 @@ export function AppSidebar() {
                 </SidebarMenuItem>
               ))}
               <SidebarMenuItem>
-                <form action={logout}>
+                <form action={async () => {
+                  await logout()
+                  router.push("/login")
+                }}>
                   <SidebarMenuButton type="submit">
                     <PowerIcon className="h-4 w-4 mr-2" />
                     <span>Logout</span>
