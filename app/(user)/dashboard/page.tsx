@@ -25,8 +25,10 @@ interface Params {
 
 export const revalidate = 360
 
+
 export default async function Dashboard(params: Params) {
   const { start, end } = getLast7DaysInterval()
+
   const {
     searchParams: {
       startTimeInterval,
@@ -67,8 +69,13 @@ export default async function Dashboard(params: Params) {
         f.flightWatch?.statusId === "D"
     ).length;
 
+
+    const validFlights = flightList.filter(f => 
+      f.flightWatch?.offBlock && f.flightWatch?.onBlock
+    )
+
     // 4. Tempo médio de voo (exemplo simplificado)
-    const totalDuration = flightList.reduce((acc, flight) => {
+    const totalDuration = validFlights.reduce((acc, flight) => {
         return acc + getFlightDurationMinutes(flight.flightWatch?.offBlock ?? 0, flight.flightWatch?.onBlock ?? 0);
     }, 0);
 
