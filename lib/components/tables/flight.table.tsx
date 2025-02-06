@@ -1,7 +1,7 @@
 import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow } from "@/lib/components/ui/table";
 import { formatDate } from "@/lib/utils/format-date";
 import { ScrollArea } from "@/lib/components/ui/scroll-area";
-import { isToday } from "date-fns";
+import { isToday } from "@/lib/utils";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/lib/components/ui/tooltip";
 import { CheckCircle, Clock, AlertCircle, XCircle, Plane } from "lucide-react";
 import { Flight } from "@/lib/definitions";
