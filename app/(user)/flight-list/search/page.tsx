@@ -23,6 +23,9 @@ export default async function FlightListWithSearch(params: Params) {
     }
   } = params
 
+  const selectedStart = startTimeInterval ?? start
+  const selectedEnd = endTimeInterval ?? end
+
   const flightList = await fetchFlightList({
     startTimeInterval: startTimeInterval ?? start,
     endTimeInterval: endTimeInterval ?? end,
@@ -38,7 +41,7 @@ export default async function FlightListWithSearch(params: Params) {
       </div>
 
       <div className="px-4 pb-10 sm:px-6 lg:px-8">
-       <FlightSearchForm />
+       <FlightSearchForm timeInterval={{ start: selectedStart, end: selectedEnd }}/>
       </div>
 
       <div className="px-4 pb-10 sm:px-6 lg:px-8">

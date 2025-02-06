@@ -1,7 +1,7 @@
 import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow } from "@/lib/components/ui/table";
 import { formatDate } from "@/lib/utils/format-date";
 import { ScrollArea } from "@/lib/components/ui/scroll-area";
-import { isToday } from "date-fns";
+import { isToday } from "@/lib/utils";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/lib/components/ui/tooltip";
 import { CheckCircle, Clock, AlertCircle, XCircle, Plane } from "lucide-react";
 import { Flight } from "@/lib/definitions";
@@ -55,7 +55,7 @@ export function FlightTable({ flightList }: { flightList: Flight[] }) {
                   <img
                     src="https://uniworldaircargo.com/wp-content/uploads/2022/01/Asset-1@4x-1-1.png"
                     alt="Enterprise Logo"
-                    className="h-8 w-auto object-contain rounded-md"
+                    className="h-8 w-auto object-contain rounded-md dark:bg-slate-50 dark:p-1"
                   />
                 </TableCell>
 

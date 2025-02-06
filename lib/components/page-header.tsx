@@ -7,7 +7,7 @@ export function PageHeader({ withTime }: { withTime: boolean }) {
                 <img
                     alt="Uniworld Logo"
                     src="/uniworld_logo.png"
-                    className="size-16 flex-none rounded-full ring-1 ring-gray-900/10 dark:ring-white dark:bg-slate-50"
+                    className="size-16 flex-none rounded-full ring-1 ring-gray-900/10 dark:bg-slate-50"
                 />
                 <h1>
                     <div className="text-sm/6 text-gray-500 dark:text-gray-400">
