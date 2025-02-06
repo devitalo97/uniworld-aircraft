@@ -25,11 +25,13 @@ export const FLIGHT_LIST_QUERY = gql`
         code {
           icao
         }
+        city
       }
       endAirport {
         code {
           icao
         }
+        city
       }
       acft {
         registration

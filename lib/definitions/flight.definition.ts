@@ -5,11 +5,11 @@ interface AirportCode {
   
   interface Airport {
     code: AirportCode;
-    longitudeDec?: number;
-    latitudeDec?: number;
-    name?: string;
+    // longitudeDec?: number;
+    // latitudeDec?: number;
+    // name?: string;
     city?: string;
-    country?: string;
+    // country?: string;
   }
   
   // interface BuyerRepresentative {

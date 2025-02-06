@@ -48,13 +48,17 @@
     "zod": "^3.24.1"
   },
   "devDependencies": {
+    "@bwsoft-code-style/eslint-config": "^1.0.3",
+    "@bwsoft-code-style/prettier": "^1.0.0",
     "@types/bcrypt": "^5.0.2",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "eslint": "^8",
     "eslint-config-next": "14.2.23",
+    "eslint-plugin-simple-import-sort": "^12.1.1",
     "postcss": "^8",
+    "prettier-plugin-tailwindcss": "^0.6.11",
     "tailwindcss": "^3.4.1",
     "typescript": "^5"
   }
