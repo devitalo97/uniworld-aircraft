@@ -16,7 +16,7 @@ import { Input } from "@/lib/components/ui/input";
 import { useSearchParams } from "next/navigation";
 import { authenticate } from "@/lib/action";
 import { ArrowRightIcon, ExclamationCircleIcon } from "@heroicons/react/24/outline";
-import { useFormState } from "react-dom";
+import { useFormState, useFormStatus } from "react-dom";
 
 const FormSchema = z.object({
   email: z.string().email(),
@@ -35,10 +35,7 @@ export function LoginForm() {
   const searchParams = useSearchParams();
   const callbackUrl = searchParams.get("callbackUrl") || "/dashboard";
 
-  const [errorMessage, formAction, isPending] = useFormState(
-    authenticate,
-    undefined
-  );
+  const [errorMessage, formAction] = useFormState(authenticate, undefined);
 
   return (
     <Form {...form}>
@@ -74,11 +71,8 @@ export function LoginForm() {
         />
 
         <input type="hidden" name="redirectTo" value={callbackUrl} />
-
-        <Button className="mt-4 w-full" aria-disabled={isPending}>
-          {isPending ? "Logging in..." : "Log in"}
-          <ArrowRightIcon className="ml-auto h-5 w-5 text-gray-50 dark:text-gray-900" />
-        </Button>
+        <SubmitButton />
+        
         <div
           className="flex h-8 items-end space-x-1"
           aria-live="polite"
@@ -93,5 +87,17 @@ export function LoginForm() {
         </div>
       </form>
     </Form>
+  );
+}
+
+// Componente separado para o botão de submissão que usa useFormStatus
+function SubmitButton() {
+  const { pending } = useFormStatus();
+
+  return (
+    <Button type="submit" className="mt-4 w-full" disabled={pending}>
+      {pending ? "Logging in..." : "Log in"}
+      <ArrowRightIcon className="ml-auto h-5 w-5 text-gray-50 dark:text-gray-900" />
+    </Button>
   );
 }
