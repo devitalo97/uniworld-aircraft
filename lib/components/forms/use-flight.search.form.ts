@@ -1,3 +1,5 @@
+"use client"
+
 import { useForm } from 'react-hook-form';
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod"
@@ -39,13 +41,14 @@ export function useFlightSearchForm(props: Props){
     const {
         register,
         handleSubmit,
-        control
+        control,
+        formState: { isSubmitting }
     } = useForm<FlightSearchSchema>({
         resolver: zodResolver(flightSearchSchema),
         defaultValues
     });
 
-    const onSubmit = handleSubmit((data) => {
+    const onSubmit = handleSubmit(async (data) => {
         const { timeInterval, ...rest } = data
         const startTimeInterval = timeInterval?.from
         const endTimeInterval = timeInterval?.to
@@ -54,11 +57,13 @@ export function useFlightSearchForm(props: Props){
             startTimeInterval,
             endTimeInterval
         })
+        await new Promise(r => setTimeout(r, 700))
     })
 
     return {
         control,
         register,
-        onSubmit
+        onSubmit,
+        isSubmitting
     }
 }

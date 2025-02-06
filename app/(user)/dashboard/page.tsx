@@ -34,9 +34,12 @@ export default async function Dashboard(params: Params) {
     }
   } = params
 
+  const selectedStart = startTimeInterval ?? start
+  const selectedEnd = endTimeInterval ?? end
+
   const flightList = await fetchFlightList({
-    startTimeInterval: startTimeInterval ?? start,
-    endTimeInterval: endTimeInterval ?? end,
+    startTimeInterval: selectedStart,
+    endTimeInterval: selectedEnd,
     flightType: [],
     flightStatus: [],
     aircraftNidList: []
@@ -120,7 +123,7 @@ export default async function Dashboard(params: Params) {
                 </h2>
             </div>
             <div className="mt-4 flex md:mt-0 md:ml-4">
-                <FlightSearchForm />
+                <FlightSearchForm timeInterval={{start: selectedStart, end: selectedEnd}}/>
             </div>
             </div>
         </div>
