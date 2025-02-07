@@ -4,7 +4,7 @@ const nextConfig = {
         {
           source: "/",
           destination: "/dashboard",
-          permanent: true, // ou false, se quiser um redirecionamento temporário
+          permanent: false, // ou false, se quiser um redirecionamento temporário
         },
       ],
 };

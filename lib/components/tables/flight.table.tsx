@@ -31,16 +31,13 @@ export function FlightTable({ flightList }: { flightList: Flight[] }) {
         <TableCaption>Uniworld Aircargo</TableCaption>
         <TableHeader>
           <TableRow>
-            <TableHead className="w-[80px]">Logo</TableHead>
-            <TableHead className="w-[80px]">Status</TableHead>
-            <TableHead>Flight #</TableHead>
-            <TableHead>Est. Departure</TableHead>
-            <TableHead>Est. Arrival</TableHead>
-            <TableHead>Dep. Time</TableHead>
-            <TableHead>Arr. Time</TableHead>
             <TableHead>Origin</TableHead>
             <TableHead>Destination</TableHead>
-            <TableHead className="text-right">Aircraft</TableHead>
+            <TableHead>Airline</TableHead>
+            <TableHead>Flight #</TableHead>
+            <TableHead>Dep. Time</TableHead>
+            <TableHead>Arr. Time</TableHead>
+            <TableHead className="w-[80px]">Status</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
@@ -51,61 +48,19 @@ export function FlightTable({ flightList }: { flightList: Flight[] }) {
 
             return (
               <TableRow key={flight.flightNid}>
+
+                <TableCell>{flight.startAirport.code.icao}: {flight.startAirport.city}</TableCell>
+                <TableCell>{flight.endAirport.code.icao}: {flight.endAirport.city}</TableCell>
+
                 <TableCell>
                   <img
                     src="https://uniworldaircargo.com/wp-content/uploads/2022/01/Asset-1@4x-1-1.png"
                     alt="Enterprise Logo"
-                    className="h-8 w-auto object-contain rounded-md dark:bg-slate-50 dark:p-1"
+                    className="w-[80px] h-8 object-contain rounded-md dark:bg-slate-50 dark:p-1"
                   />
                 </TableCell>
 
-                {/* Status Unificado */}
-                <TableCell>
-                  <TooltipProvider>
-                    <Tooltip>
-                      <TooltipTrigger className="flex gap-1 items-center">
-                        {statusConfig[flightStatus]?.icon || statusConfig.UNKNOWN.icon}
-                        {opStatusConfig[operationalStatus]?.icon || opStatusConfig.UNKNOWN.icon}
-                      </TooltipTrigger>
-                      <TooltipContent className="bg-white ring-1 ring-muted text-gray-900 dark:bg-[hsl(240,10%,3.9%)] dark:text-white">
-                        {statusConfig[flightStatus]?.label} | {opStatusConfig[operationalStatus]?.label}
-                      </TooltipContent>
-
-                    </Tooltip>
-                  </TooltipProvider>
-                </TableCell>
-
                 <TableCell className="font-medium">{flight.flightNid}</TableCell>
-
-                <TableCell>
-                  {formatDate({
-                    date: flight.startTime * 1000,
-                    locales: "en-US",
-                    options: {
-                      timeZone: "America/Panama",
-                      hour12: true,
-                      hour: "numeric",
-                      minute: "numeric",
-                      weekday: "long",
-                    },
-                    callback: (result, date) => (isToday(date) ? `${result} (today)` : result),
-                  })}
-                </TableCell>
-
-                <TableCell>
-                  {formatDate({
-                    date: flight.endTime * 1000,
-                    locales: "en-US",
-                    options: {
-                      timeZone: "America/Panama",
-                      hour12: true,
-                      hour: "numeric",
-                      minute: "numeric",
-                      weekday: "long",
-                    },
-                    callback: (result, date) => (isToday(date) ? `${result} (today)` : result),
-                  })}
-                </TableCell>
 
                 <TableCell>
                   {flight?.flightWatch?.offBlock
@@ -121,7 +76,18 @@ export function FlightTable({ flightList }: { flightList: Flight[] }) {
                         },
                         callback: (result, date) => (isToday(date) ? `${result} (today)` : result),
                       })
-                    : "N/A"}
+                    : formatDate({
+                      date: flight.startTime * 1000,
+                      locales: "en-US",
+                      options: {
+                        timeZone: "America/Panama",
+                        hour12: true,
+                        hour: "numeric",
+                        minute: "numeric",
+                        weekday: "long",
+                      },
+                      callback: (result, date) => (isToday(date) ? `${result} (today)` : result),
+                    })}
                 </TableCell>
 
                 <TableCell>
@@ -138,12 +104,34 @@ export function FlightTable({ flightList }: { flightList: Flight[] }) {
                         },
                         callback: (result, date) => (isToday(date) ? `${result} (today)` : result),
                       })
-                    : "N/A"}
+                    : formatDate({
+                      date: flight.endTime * 1000,
+                      locales: "en-US",
+                      options: {
+                        timeZone: "America/Panama",
+                        hour12: true,
+                        hour: "numeric",
+                        minute: "numeric",
+                        weekday: "long",
+                      },
+                      callback: (result, date) => (isToday(date) ? `${result} (today)` : result),
+                    })}
                 </TableCell>
 
-                <TableCell>{flight.startAirport.code.icao}: {flight.startAirport.city}</TableCell>
-                <TableCell>{flight.endAirport.code.icao}: {flight.endAirport.city}</TableCell>
-                <TableCell className="text-right">{flight.acft?.registration || "N/A"}</TableCell>
+                {/* Status Unificado */}
+                <TableCell>
+                  <TooltipProvider>
+                    <Tooltip>
+                      <TooltipTrigger className="flex gap-1 items-center">
+                        {statusConfig[flightStatus]?.icon || statusConfig.UNKNOWN.icon}
+                        {opStatusConfig[operationalStatus]?.icon || opStatusConfig.UNKNOWN.icon}
+                      </TooltipTrigger>
+                      <TooltipContent className="bg-white ring-1 ring-muted text-gray-900 dark:bg-[hsl(240,10%,3.9%)] dark:text-white">
+                        {statusConfig[flightStatus]?.label} | {opStatusConfig[operationalStatus]?.label}
+                      </TooltipContent>
+                    </Tooltip>
+                  </TooltipProvider>
+                </TableCell>
               </TableRow>
             );
           })}
