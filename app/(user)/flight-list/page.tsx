@@ -3,7 +3,7 @@ import { getCurrentDateInterval } from "@/lib/utils";
 import { FlightTable } from "@/lib/components/tables";
 import { PageHeader } from "@/lib/components/page-header";
 
-export const revalidate = 360
+export const revalidate = 60
 
 export default async function FlightList() {
   const { start, end } = getCurrentDateInterval()
