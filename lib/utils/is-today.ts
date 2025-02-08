@@ -1,7 +1,16 @@
-export function isToday(date: Date): boolean {
+export function isToday(date: Date, locale: string = "es-PA", timeZone: string = 'America/Panama'): boolean {
     const today = new Date();
-    
-    return date.getFullYear() === today.getFullYear() &&
-           date.getMonth() === today.getMonth() &&
-           date.getDate() === today.getDate();
-}
+  
+    const options: Intl.DateTimeFormatOptions = {
+      timeZone,
+      year: 'numeric',
+      month: 'numeric',
+      day: 'numeric',
+    };
+  
+    const dateString = date.toLocaleDateString(locale, options);
+    const todayString = today.toLocaleDateString(locale, options);
+  
+    return dateString === todayString;
+  }
+  
