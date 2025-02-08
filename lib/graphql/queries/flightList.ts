@@ -18,23 +18,15 @@ export const FLIGHT_LIST_QUERY = gql`
       aircraftNidList: $aircraftNidList
     }) {
       flightNid
+      flightNo
       status
       startTime
       endTime
       startAirport {
-        code {
-          icao
-        }
         city
       }
       endAirport {
-        code {
-          icao
-        }
         city
-      }
-      acft {
-        registration
       }
       flightWatch { 
         onBlock

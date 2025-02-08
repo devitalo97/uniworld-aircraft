@@ -1,14 +1,14 @@
-interface AirportCode {
-    icao: string;
-    iata: string;
-  }
+// interface AirportCode {
+//     icao: string;
+//     iata: string;
+//   }
   
   interface Airport {
-    code: AirportCode;
+    // code: AirportCode;
     // longitudeDec?: number;
     // latitudeDec?: number;
     // name?: string;
-    city?: string;
+    city: string;
     // country?: string;
   }
   
@@ -37,16 +37,16 @@ interface AirportCode {
   //   quoteRealization?: QuoteRealization;
   // }
   
-  interface AircraftType {
-    iCAO: string;
-    iATA: string;
-    easa?: string;
-  }
+  // interface AircraftType {
+  //   iCAO: string;
+  //   iATA: string;
+  //   easa?: string;
+  // }
   
-  interface Aircraft {
-    registration: string;
-    acftType: AircraftType;
-  }
+  // interface Aircraft {
+  //   registration: string;
+  //   acftType: AircraftType;
+  // }
   
   // interface PassengerContact {
   //   name: string;
@@ -135,12 +135,12 @@ interface AirportCode {
   
 export interface Flight {
     flightNid: string;
+    flightNo: string
     status: string;
     startTime: number;
     endTime: number;
     startAirport: Airport;
     endAirport: Airport;
-    acft?: Aircraft;
     flightWatch: FlightWatch;
   }
   
