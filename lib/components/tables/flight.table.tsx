@@ -3,7 +3,7 @@ import { formatDate } from "@/lib/utils/format-date";
 import { ScrollArea } from "@/lib/components/ui/scroll-area";
 import { isToday } from "@/lib/utils";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/lib/components/ui/tooltip";
-import { CheckCircle, Clock, AlertCircle, XCircle, Plane } from "lucide-react";
+import { CheckCircle, Clock, AlertCircle, XCircle, Plane, AlarmCheck } from "lucide-react";
 import { Flight } from "@/lib/definitions";
 
 // Mapeamento de status para ícones e cores
@@ -21,8 +21,10 @@ const opStatusConfig: IStatusConfig = {
   A: { icon: <Plane className="text-blue-500" size={18} />, label: "Airborne" },
   "+": { icon: <CheckCircle className="text-green-500" size={18} />, label: "Finished" },
   D: { icon: <XCircle className="text-red-500" size={18} />, label: "Delayed" },
+  "D+": { icon: <AlarmCheck  className="text-green-500" size={18} />, label: "Finished late" },
   UNKNOWN: { icon: <AlertCircle className="text-gray-500" size={18} />, label: "Unknown" },
 };
+
 
 export function FlightTable({ flightList }: { flightList: Flight[] }) {
   return (
@@ -52,8 +54,8 @@ export function FlightTable({ flightList }: { flightList: Flight[] }) {
                 className="even:bg-slate-50 hover:even:bg-slate-100 dark:even:bg-muted dark:hover:even:bg-zinc-900"
               >
 
-                <TableCell>{flight.startAirport.code.icao}: {flight.startAirport.city}</TableCell>
-                <TableCell>{flight.endAirport.code.icao}: {flight.endAirport.city}</TableCell>
+                <TableCell>{flight.startAirport.city}</TableCell>
+                <TableCell>{flight.endAirport.city}</TableCell>
 
                 <TableCell>
                   <img
@@ -63,7 +65,7 @@ export function FlightTable({ flightList }: { flightList: Flight[] }) {
                   />
                 </TableCell>
 
-                <TableCell className="font-medium">{flight.flightNid}</TableCell>
+                <TableCell className="font-medium">{flight.flightNo}</TableCell>
 
                 <TableCell>
                   {flight?.flightWatch?.offBlock
