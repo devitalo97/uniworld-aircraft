@@ -47,7 +47,10 @@ export function FlightTable({ flightList }: { flightList: Flight[] }) {
             const operationalStatus = flight.flightWatch?.statusId || "UNKNOWN";
 
             return (
-              <TableRow key={flight.flightNid}>
+              <TableRow 
+                key={flight.flightNid}
+                className="even:bg-slate-50 hover:even:bg-slate-100 dark:even:bg-muted dark:hover:even:bg-zinc-900"
+              >
 
                 <TableCell>{flight.startAirport.code.icao}: {flight.startAirport.city}</TableCell>
                 <TableCell>{flight.endAirport.code.icao}: {flight.endAirport.city}</TableCell>
