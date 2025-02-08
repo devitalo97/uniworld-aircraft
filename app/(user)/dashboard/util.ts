@@ -96,7 +96,7 @@ export function groupFlightsByOriginAirport(flights: Flight[]) {
     const groups: Record<string, number> = {};
   
     flights.forEach((flight) => {
-      const airportCode = flight.startAirport?.code?.icao || "Unknown";
+      const airportCode = flight.startAirport?.city || "Unknown";
       if (!groups[airportCode]) {
         groups[airportCode] = 0;
       }

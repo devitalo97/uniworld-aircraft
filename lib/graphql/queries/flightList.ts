@@ -28,6 +28,9 @@ export const FLIGHT_LIST_QUERY = gql`
       endAirport {
         city
       }
+      acft {
+        registration
+      }
       flightWatch { 
         onBlock
         offBlock

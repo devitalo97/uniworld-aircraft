@@ -43,10 +43,10 @@
   //   easa?: string;
   // }
   
-  // interface Aircraft {
-  //   registration: string;
-  //   acftType: AircraftType;
-  // }
+  interface Aircraft {
+    registration: string;
+    // acftType: AircraftType;
+  }
   
   // interface PassengerContact {
   //   name: string;
@@ -142,6 +142,7 @@ export interface Flight {
     startAirport: Airport;
     endAirport: Airport;
     flightWatch: FlightWatch;
+    acft: Aircraft
   }
   
   
