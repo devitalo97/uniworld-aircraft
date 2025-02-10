@@ -16,15 +16,13 @@ export default async function FlightList() {
     aircraftNidList: []
   });
 
-  console.log("data")
-
   return (
     <>
       <div className="px-4 py-10 sm:px-6 lg:px-8">
        <PageHeader withTime={true}/>
       </div>
 
-      <AutoRefresh interval={5}/>
+      <AutoRefresh interval={60}/>
 
       <div className="px-4 pb-10 sm:px-6 lg:px-8">
         <FlightTable flightList={flightList}/>
