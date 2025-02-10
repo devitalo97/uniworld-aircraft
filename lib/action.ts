@@ -23,15 +23,10 @@ export async function fetchFlightList(input: {
       variables: input,
       context: {
         fetchOptions: {
-          // cache: "no-store"
-          next: {
-            revalidate: 60,
-          },
+          cache: "no-store"
         },
       },
     });
-
-    console.log('data')
 
     return data?.flightList || [];
   } catch (error: any) {
