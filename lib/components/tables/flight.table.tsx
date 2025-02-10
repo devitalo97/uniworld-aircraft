@@ -74,7 +74,7 @@ export function FlightTable({ flightList }: { flightList: Flight[] }) {
                         locales: "en-US",
                         options: {
                           timeZone: "America/Panama",
-                          hour12: true,
+                          hour12: false,
                           hour: "numeric",
                           minute: "numeric",
                           weekday: "long",
@@ -86,7 +86,7 @@ export function FlightTable({ flightList }: { flightList: Flight[] }) {
                       locales: "en-US",
                       options: {
                         timeZone: "America/Panama",
-                        hour12: true,
+                        hour12: false,
                         hour: "numeric",
                         minute: "numeric",
                         weekday: "long",
@@ -102,7 +102,7 @@ export function FlightTable({ flightList }: { flightList: Flight[] }) {
                         locales: "en-US",
                         options: {
                           timeZone: "America/Panama",
-                          hour12: true,
+                          hour12: false,
                           hour: "numeric",
                           minute: "numeric",
                           weekday: "long",
@@ -114,7 +114,7 @@ export function FlightTable({ flightList }: { flightList: Flight[] }) {
                       locales: "en-US",
                       options: {
                         timeZone: "America/Panama",
-                        hour12: true,
+                        hour12: false,
                         hour: "numeric",
                         minute: "numeric",
                         weekday: "long",
