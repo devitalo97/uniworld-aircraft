@@ -22,7 +22,7 @@ export default async function FlightList() {
        <PageHeader withTime={true}/>
       </div>
 
-      <AutoRefresh interval={60}/>
+      <AutoRefresh interval={5}/>
 
       <div className="px-4 pb-10 sm:px-6 lg:px-8">
         <FlightTable flightList={flightList}/>

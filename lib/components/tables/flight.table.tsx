@@ -27,6 +27,7 @@ const opStatusConfig: IStatusConfig = {
 
 
 export function FlightTable({ flightList }: { flightList: Flight[] }) {
+  alert(1)
   return (
     <ScrollArea>
       <Table>
