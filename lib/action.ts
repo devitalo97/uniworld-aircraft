@@ -21,6 +21,12 @@ export async function fetchFlightList(input: {
     const { data } = await client.query({
       query: FLIGHT_LIST_QUERY,
       variables: input,
+      // fetchPolicy: "network-only",
+      context: {
+        fetchOptions: {
+          next: { revalidate: 60 },
+        },
+      },
     });
 
     return data?.flightList || [];
