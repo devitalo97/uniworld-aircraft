@@ -21,13 +21,17 @@ export async function fetchFlightList(input: {
     const { data } = await client.query({
       query: FLIGHT_LIST_QUERY,
       variables: input,
-      // fetchPolicy: "network-only",
       context: {
         fetchOptions: {
-          next: { revalidate: 60 },
+          // cache: "no-store"
+          next: {
+            revalidate: 60,
+          },
         },
       },
     });
+
+    console.log('data')
 
     return data?.flightList || [];
   } catch (error: any) {
