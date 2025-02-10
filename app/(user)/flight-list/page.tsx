@@ -16,6 +16,8 @@ export default async function FlightList() {
     aircraftNidList: []
   });
 
+  console.log("data")
+
   return (
     <>
       <div className="px-4 py-10 sm:px-6 lg:px-8">
