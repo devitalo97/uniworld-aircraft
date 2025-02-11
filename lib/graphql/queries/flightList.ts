@@ -8,15 +8,14 @@ export const FLIGHT_LIST_QUERY = gql`
     $flightStatus: [FlightStatus!]
     $aircraftNidList: [AircraftNid!]
   ) {
-    flightList(filter: {
-      timeInterval: {
-        start: $startTimeInterval
-        end: $endTimeInterval
-      },
-      flightType: $flightType,
-      flightStatus: $flightStatus,
-      aircraftNidList: $aircraftNidList
-    }) {
+    flightList(
+      filter: {
+        timeInterval: { start: $startTimeInterval, end: $endTimeInterval }
+        flightType: $flightType
+        flightStatus: $flightStatus
+        aircraftNidList: $aircraftNidList
+      }
+    ) {
       flightNid
       flightNo
       status
@@ -29,9 +28,11 @@ export const FLIGHT_LIST_QUERY = gql`
         city
       }
       acft {
-        registration
+        acftType {
+          iata
+        }
       }
-      flightWatch { 
+      flightWatch {
         onBlock
         offBlock
         statusId
