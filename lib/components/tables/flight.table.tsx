@@ -147,7 +147,7 @@ export function FlightTable({ flightList }: { flightList: Flight[] }) {
                         },
                         callback: (result, date) =>
                           isToday(date)
-                            ? `${result} ${date.getFullYear()} (today)`
+                            ? `${result} ${date.getFullYear()}`
                             : result,
                       })
                     : formatDate({
@@ -162,7 +162,7 @@ export function FlightTable({ flightList }: { flightList: Flight[] }) {
                         },
                         callback: (result, date) =>
                           isToday(date)
-                            ? `${result} ${date.getFullYear()} (today)`
+                            ? `${result} ${date.getFullYear()}`
                             : result,
                       })}
                 </TableCell>
@@ -181,7 +181,7 @@ export function FlightTable({ flightList }: { flightList: Flight[] }) {
                         },
                         callback: (result, date) =>
                           isToday(date)
-                            ? `${result} ${date.getFullYear()} (today)`
+                            ? `${result} ${date.getFullYear()}`
                             : result,
                       })
                     : formatDate({
@@ -196,7 +196,7 @@ export function FlightTable({ flightList }: { flightList: Flight[] }) {
                         },
                         callback: (result, date) =>
                           isToday(date)
-                            ? `${result} ${date.getFullYear()} (today)`
+                            ? `${result} ${date.getFullYear()}`
                             : result,
                       })}
                 </TableCell>
