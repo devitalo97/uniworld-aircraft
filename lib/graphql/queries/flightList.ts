@@ -29,7 +29,7 @@ export const FLIGHT_LIST_QUERY = gql`
       }
       acft {
         acftType {
-          iata
+          icao
         }
       }
       flightWatch {

@@ -9,7 +9,7 @@ import {
 } from "@/lib/components/ui/table";
 import { formatDate } from "@/lib/utils/format-date";
 import { ScrollArea } from "@/lib/components/ui/scroll-area";
-import { isToday } from "@/lib/utils";
+import { cn, isToday } from "@/lib/utils";
 import {
   CheckCircle,
   Clock,
@@ -61,34 +61,44 @@ import { Flight } from "@/lib/definitions";
 //   },
 // };
 
-const clientStatusMap: Record<string, { icon: JSX.Element; label: string }> = {
+const clientStatusMap: Record<
+  string,
+  { icon: JSX.Element; label: string; color: string }
+> = {
   "+": {
     icon: <CheckCircle className="text-green-500" size={18} />,
     label: "Arrived",
+    color: "bg-green-400",
   },
   "D+": {
     icon: <CheckCircle className="text-red-500" size={18} />,
     label: "Arrived Delayed",
+    color: "bg-red-400",
   },
   D: {
     icon: <AlertTriangle className="text-orange-500" size={18} />,
     label: "Delayed",
+    color: "bg-orange-400",
   },
   S: {
     icon: <Clock className="text-green-500" size={18} />,
     label: "On time",
+    color: "bg-green-400",
   },
   CONFIRMED: {
     icon: <Clock className="text-green-500" size={18} />,
     label: "On time",
+    color: "bg-green-400",
   },
   A: {
     icon: <Plane className="text-blue-500" size={18} />,
     label: "Departed",
+    color: "bg-blue-400",
   },
   UNKNOWN: {
     icon: <XCircle className="text-gray-500" size={18} />,
     label: "Unknown",
+    color: "bg-gray-400",
   },
 };
 
@@ -201,14 +211,20 @@ export function FlightTable({ flightList }: { flightList: Flight[] }) {
                       })}
                 </TableCell>
 
-                <TableCell>{flight.acft.acftType.iata}</TableCell>
+                <TableCell>{flight.acft.acftType.icao}</TableCell>
 
                 {/* Status Unificado */}
                 <TableCell>
                   {/* {clientStatusMap[status]?.icon ||
                     clientStatusMap.UNKNOWN.icon} */}
-                  {clientStatusMap[status]?.label ||
-                    clientStatusMap.UNKNOWN.label}
+                  <div
+                    className={cn(
+                      "rounded-md p-1 w-fit font-medium dark:text-primary-foreground",
+                      clientStatusMap[status].color
+                    )}
+                  >
+                    {clientStatusMap[status].label}
+                  </div>
                 </TableCell>
               </TableRow>
             );

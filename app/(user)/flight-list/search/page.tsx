@@ -6,46 +6,45 @@ import { FlightSearchForm } from "@/lib/components/forms";
 
 interface Params {
   searchParams: {
-    startTimeInterval: string 
-    endTimeInterval: string
-    flightType: string[]
-    flightStatus: string[]
-    aircraftNidList: string[]
-  }
+    startTimeInterval: string;
+    endTimeInterval: string;
+    flightType: string[];
+    flightStatus: string[];
+    aircraftNidList: string[];
+  };
 }
 
 export default async function FlightListWithSearch(params: Params) {
-  const { start, end } = getCurrentDateInterval()
+  const { start, end } = getCurrentDateInterval();
   const {
-    searchParams: {
-      startTimeInterval,
-      endTimeInterval,
-    }
-  } = params
+    searchParams: { startTimeInterval, endTimeInterval },
+  } = params;
 
-  const selectedStart = startTimeInterval ?? start
-  const selectedEnd = endTimeInterval ?? end
+  const selectedStart = startTimeInterval ?? start;
+  const selectedEnd = endTimeInterval ?? end;
 
   const flightList = await fetchFlightList({
     startTimeInterval: startTimeInterval ?? start,
     endTimeInterval: endTimeInterval ?? end,
     flightType: [],
     flightStatus: [],
-    aircraftNidList: []
+    aircraftNidList: [],
   });
 
   return (
     <>
       <div className="px-4 py-10 sm:px-6 lg:px-8">
-       <PageHeader  withTime={false}/>
+        <PageHeader />
       </div>
 
       <div className="px-4 pb-10 sm:px-6 lg:px-8">
-       <FlightSearchForm timeInterval={{ start: selectedStart, end: selectedEnd }}/>
+        <FlightSearchForm
+          timeInterval={{ start: selectedStart, end: selectedEnd }}
+        />
       </div>
 
       <div className="px-4 pb-10 sm:px-6 lg:px-8">
-        <FlightTable flightList={flightList}/>
+        <FlightTable flightList={flightList} />
       </div>
     </>
   );

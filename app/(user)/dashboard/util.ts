@@ -24,7 +24,7 @@ export function groupFlightsByAircraft(flights: Flight[]) {
   const groups: Record<string, number> = {};
 
   flights.forEach((flight) => {
-    const reg = flight.acft?.acftType.iata || "Unknown";
+    const reg = flight.acft?.acftType.icao || "Unknown";
     if (!groups[reg]) {
       groups[reg] = 0;
     }
@@ -55,7 +55,7 @@ export function groupFlightsByDateAndType(
     const dayStr = format(flight.startTime * 1000, "yyyy-MM-dd");
 
     // Pega o "tipo" da aeronave; neste exemplo usamos a matrícula.
-    const aircraftType = flight.acft?.acftType.iata || "Unknown";
+    const aircraftType = flight.acft?.acftType.icao || "Unknown";
 
     // Garante que exista um objeto para essa data
     if (!dateMap[dayStr]) {

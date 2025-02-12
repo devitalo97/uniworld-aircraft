@@ -38,8 +38,8 @@ interface Airport {
 // }
 
 interface AircraftType {
-  // icao: string;
-  iata: string;
+  icao: string;
+  // iata: string;
   // easa: string;
 }
 
