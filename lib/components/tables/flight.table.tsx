@@ -9,13 +9,14 @@ import {
 } from "@/lib/components/ui/table";
 import { formatDate } from "@/lib/utils/format-date";
 import { ScrollArea } from "@/lib/components/ui/scroll-area";
-import { cn, isToday } from "@/lib/utils";
+import { cn } from "@/lib/utils";
 import {
   CheckCircle,
   Clock,
   XCircle,
   Plane,
   AlertTriangle,
+  ClockAlertIcon,
 } from "lucide-react";
 import { Flight } from "@/lib/definitions";
 
@@ -63,42 +64,42 @@ import { Flight } from "@/lib/definitions";
 
 const clientStatusMap: Record<
   string,
-  { icon: JSX.Element; label: string; color: string }
+  { icon: JSX.Element; label: string; className: string }
 > = {
   "+": {
     icon: <CheckCircle className="text-green-500" size={18} />,
     label: "Arrived",
-    color: "bg-green-400",
+    className: "bg-green-400",
   },
   "D+": {
-    icon: <CheckCircle className="text-red-500" size={18} />,
+    icon: <ClockAlertIcon className="text-green-500" size={18} />,
     label: "Arrived Delayed",
-    color: "bg-red-400",
+    className: "bg-green-400",
   },
   D: {
-    icon: <AlertTriangle className="text-orange-500" size={18} />,
+    icon: <AlertTriangle className="text-yellow-500" size={18} />,
     label: "Delayed",
-    color: "bg-orange-400",
+    className: "bg-yellow-400",
   },
   S: {
-    icon: <Clock className="text-green-500" size={18} />,
+    icon: <Clock className="text-gray-500" size={18} />,
     label: "On time",
-    color: "bg-green-400",
+    className: "bg-white",
   },
   CONFIRMED: {
-    icon: <Clock className="text-green-500" size={18} />,
+    icon: <Clock className="text-gray-500" size={18} />,
     label: "On time",
-    color: "bg-green-400",
+    className: "bg-white",
   },
   A: {
     icon: <Plane className="text-blue-500" size={18} />,
     label: "Departed",
-    color: "bg-blue-400",
+    className: "bg-blue-400",
   },
   UNKNOWN: {
     icon: <XCircle className="text-gray-500" size={18} />,
     label: "Unknown",
-    color: "bg-gray-400",
+    className: "bg-gray-400",
   },
 };
 
@@ -156,9 +157,7 @@ export function FlightTable({ flightList }: { flightList: Flight[] }) {
                           weekday: "short",
                         },
                         callback: (result, date) =>
-                          isToday(date)
-                            ? `${result} ${date.getFullYear()}`
-                            : result,
+                          `${result} ${date.getFullYear()}`,
                       })
                     : formatDate({
                         date: flight.startTime * 1000,
@@ -171,9 +170,7 @@ export function FlightTable({ flightList }: { flightList: Flight[] }) {
                           weekday: "short",
                         },
                         callback: (result, date) =>
-                          isToday(date)
-                            ? `${result} ${date.getFullYear()}`
-                            : result,
+                          `${result} ${date.getFullYear()}`,
                       })}
                 </TableCell>
 
@@ -190,9 +187,7 @@ export function FlightTable({ flightList }: { flightList: Flight[] }) {
                           weekday: "short",
                         },
                         callback: (result, date) =>
-                          isToday(date)
-                            ? `${result} ${date.getFullYear()}`
-                            : result,
+                          `${result} ${date.getFullYear()}`,
                       })
                     : formatDate({
                         date: flight.endTime * 1000,
@@ -205,9 +200,7 @@ export function FlightTable({ flightList }: { flightList: Flight[] }) {
                           weekday: "short",
                         },
                         callback: (result, date) =>
-                          isToday(date)
-                            ? `${result} ${date.getFullYear()}`
-                            : result,
+                          `${result} ${date.getFullYear()}`,
                       })}
                 </TableCell>
 
@@ -220,7 +213,7 @@ export function FlightTable({ flightList }: { flightList: Flight[] }) {
                   <div
                     className={cn(
                       "rounded-md p-1 w-fit font-medium dark:text-primary-foreground",
-                      clientStatusMap[status].color
+                      clientStatusMap[status].className
                     )}
                   >
                     {clientStatusMap[status].label}
