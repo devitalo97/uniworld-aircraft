@@ -107,7 +107,7 @@ export function FlightTable({ flightList }: { flightList: Flight[] }) {
   return (
     <ScrollArea>
       <Table>
-        <TableCaption>Uniworld Air Cargo</TableCaption>
+        <TableCaption>UniWorld Air Cargo</TableCaption>
         <TableHeader>
           <TableRow>
             <TableHead>Origin</TableHead>
