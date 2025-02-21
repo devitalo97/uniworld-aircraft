@@ -156,8 +156,7 @@ export function FlightTable({ flightList }: { flightList: Flight[] }) {
                           minute: "numeric",
                           weekday: "short",
                         },
-                        callback: (result, date) =>
-                          `${result} ${date.getFullYear()}`,
+                        callback: (result) => `${result}`,
                       })
                     : formatDate({
                         date: flight.startTime * 1000,
@@ -169,8 +168,7 @@ export function FlightTable({ flightList }: { flightList: Flight[] }) {
                           minute: "numeric",
                           weekday: "short",
                         },
-                        callback: (result, date) =>
-                          `${result} ${date.getFullYear()}`,
+                        callback: (result) => `${result}`,
                       })}
                 </TableCell>
 
@@ -186,8 +184,7 @@ export function FlightTable({ flightList }: { flightList: Flight[] }) {
                           minute: "numeric",
                           weekday: "short",
                         },
-                        callback: (result, date) =>
-                          `${result} ${date.getFullYear()}`,
+                        callback: (result) => `${result}`,
                       })
                     : formatDate({
                         date: flight.endTime * 1000,
@@ -199,8 +196,7 @@ export function FlightTable({ flightList }: { flightList: Flight[] }) {
                           minute: "numeric",
                           weekday: "short",
                         },
-                        callback: (result, date) =>
-                          `${result} ${date.getFullYear()}`,
+                        callback: (result) => `${result}`,
                       })}
                 </TableCell>
 
