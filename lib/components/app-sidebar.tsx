@@ -49,7 +49,7 @@ export function AppSidebar() {
       <SidebarContent className="flex flex-col flex-1">
         {/* Área principal do menu */}
         <SidebarGroup>
-          <SidebarGroupLabel>Uniworld Aircargo</SidebarGroupLabel>
+          <SidebarGroupLabel>Uniworld Air Cargo</SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
               {items.map((item) => (

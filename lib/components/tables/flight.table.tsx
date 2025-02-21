@@ -73,7 +73,7 @@ const clientStatusMap: Record<
   },
   "D+": {
     icon: <ClockAlertIcon className="text-green-500" size={18} />,
-    label: "Arrived Delayed",
+    label: "Arrived",
     className: "bg-green-400",
   },
   D: {
@@ -107,7 +107,7 @@ export function FlightTable({ flightList }: { flightList: Flight[] }) {
   return (
     <ScrollArea>
       <Table>
-        <TableCaption>Uniworld Aircargo</TableCaption>
+        <TableCaption>Uniworld Air Cargo</TableCaption>
         <TableHeader>
           <TableRow>
             <TableHead>Origin</TableHead>

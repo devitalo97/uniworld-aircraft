@@ -12,7 +12,7 @@ export function PageHeader() {
             Flight Schedule
           </div>
           <div className="mt-1 text-base font-semibold text-gray-900 dark:text-white">
-            Uniworld AirCargo
+            Uniworld Air Cargo
           </div>
         </h1>
       </div>
