@@ -4,8 +4,6 @@ import { FlightTable } from "@/lib/components/tables";
 import { PageHeader } from "@/lib/components/page-header";
 import AutoRefresh from "@/lib/components/auto-refresh";
 
-export const revalidate = 60;
-
 export default async function FlightList() {
   const { start, end } = getCurrentDateInterval(3);
   const flightList = await fetchFlightList({

@@ -101,6 +101,11 @@ const clientStatusMap: Record<
     label: "Unknown",
     className: "bg-gray-400",
   },
+  SLCA: {
+    icon: <XCircle className="text-gray-500" size={18} />,
+    label: "SLCA",
+    className: "bg-gray-400",
+  },
 };
 
 export function FlightTable({ flightList }: { flightList: Flight[] }) {
