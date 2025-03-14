@@ -106,6 +106,11 @@ const clientStatusMap: Record<
     label: "SLCA",
     className: "bg-gray-400",
   },
+  DA: {
+    icon: <XCircle className="text-gray-500" size={18} />,
+    label: "DA",
+    className: "bg-gray-400",
+  },
 };
 
 export function FlightTable({ flightList }: { flightList: Flight[] }) {
@@ -131,6 +136,7 @@ export function FlightTable({ flightList }: { flightList: Flight[] }) {
             // const flightStatus = flight.status || "UNKNOWN";
             // const operationalStatus = flight.flightWatch?.statusId || "UNKNOWN";
             const status = flight.flightWatch?.statusId || flight.status;
+            console.log("status", status);
             return (
               <TableRow
                 key={flight.flightNid}
@@ -214,10 +220,10 @@ export function FlightTable({ flightList }: { flightList: Flight[] }) {
                   <div
                     className={cn(
                       "rounded-md p-1 w-fit font-medium dark:text-primary-foreground",
-                      clientStatusMap[status].className
+                      clientStatusMap[status]?.className ?? "bg-gray-400"
                     )}
                   >
-                    {clientStatusMap[status].label}
+                    {clientStatusMap[status]?.label ?? status}
                   </div>
                 </TableCell>
               </TableRow>
