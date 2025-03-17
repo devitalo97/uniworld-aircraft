@@ -134,6 +134,7 @@ interface FlightWatch {
 // }
 
 export interface Flight {
+  isCnl: boolean;
   flightNid: string;
   flightNo: string;
   status: string;

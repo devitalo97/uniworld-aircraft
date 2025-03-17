@@ -1,4 +1,4 @@
-"use server"
+"use server";
 
 import { signIn, signOut } from "@/auth";
 import { getClient } from "./apllo-client";
@@ -6,16 +6,16 @@ import { Flight, User } from "./definitions";
 import { FLIGHT_LIST_QUERY } from "./graphql/queries";
 import { neon } from "@neondatabase/serverless";
 import { AuthError } from "next-auth";
-import bcrypt from "bcrypt"
+import bcrypt from "bcrypt";
 import { revalidatePath } from "next/cache";
 
 export async function fetchFlightList(input: {
-  startTimeInterval: string
-  endTimeInterval: string
-  flightType: string[]
-  flightStatus: string[]
-  aircraftNidList: string[]
- }): Promise<Flight[]> {
+  startTimeInterval: string;
+  endTimeInterval: string;
+  flightType: string[];
+  flightStatus: string[];
+  aircraftNidList: string[];
+}): Promise<Flight[]> {
   const client = getClient();
   try {
     const { data } = await client.query({
@@ -23,32 +23,32 @@ export async function fetchFlightList(input: {
       variables: input,
       context: {
         fetchOptions: {
-          cache: "no-store"
+          cache: "no-store",
         },
       },
     });
 
-    return data?.flightList || [];
+    return (data?.flightList ?? []).filter((el: Flight) => !el.isCnl);
   } catch (error: any) {
-    throw error
+    throw error;
   }
 }
 
 export async function getUserByEmail(email: string): Promise<User | null> {
-    const sql = neon(process.env.NEON_TECH_DATABASE_URL!);
+  const sql = neon(process.env.NEON_TECH_DATABASE_URL!);
 
-    const data = await sql`
+  const data = await sql`
         SELECT id, name, email, created_at, password, role
         FROM "user"
         WHERE email = ${email}
         LIMIT 1;
     `;
 
-    return data.length > 0 ? data[0] as User : null;
+  return data.length > 0 ? (data[0] as User) : null;
 }
 
 export async function createOneUser(
-  prevState: { error?: string, success: boolean } | undefined,
+  prevState: { error?: string; success: boolean } | undefined,
   formData: FormData
 ) {
   try {
@@ -84,15 +84,14 @@ export async function createOneUser(
       RETURNING id, name, email, created_at;
     `;
 
-    revalidatePath("/configuration")
-    
-    return { success: true, redirect_to: "/configuration" }
+    revalidatePath("/configuration");
+
+    return { success: true, redirect_to: "/configuration" };
   } catch (error) {
-    if(error instanceof Error) return {error: error.message, success: false}
-    throw error
+    if (error instanceof Error) return { error: error.message, success: false };
+    throw error;
   }
 }
-
 
 export async function listUsers(limit: number = 10, offset: number = 0) {
   const sql = neon(process.env.NEON_TECH_DATABASE_URL!);
@@ -116,27 +115,25 @@ export async function deleteUserById(userId: string) {
       DELETE FROM "user" WHERE id = ${userId};
     `;
 
-    revalidatePath("/configuration")
+    revalidatePath("/configuration");
   } catch (error) {
-    throw error
+    throw error;
   }
 }
 
-
-
 export async function authenticate(
   prevState: string | undefined,
-  formData: FormData,
+  formData: FormData
 ) {
   try {
-    await signIn('credentials', formData);
+    await signIn("credentials", formData);
   } catch (error) {
     if (error instanceof AuthError) {
       switch (error.type) {
-        case 'CredentialsSignin':
-          return 'Invalid credentials.';
+        case "CredentialsSignin":
+          return "Invalid credentials.";
         default:
-          return 'Something went wrong.';
+          return "Something went wrong.";
       }
     }
     throw error;
@@ -146,5 +143,3 @@ export async function authenticate(
 export async function logout() {
   await signOut({ redirect: false });
 }
-
-

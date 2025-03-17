@@ -1,11 +1,11 @@
 query {
-  flightList(filter: {
-    timeInterval: {
-      start: "2020-03-14"
-      end: "2020-03-20"
+  flightList(
+    filter: {
+      timeInterval: { start: "2020-03-14", end: "2020-03-20" }
+      flightStatus: CONFIRMED
     }
-    flightStatus: CONFIRMED
-  }) {
+  ) {
+    isCnl
     flightNid
     status
     startTimeLocal
@@ -40,7 +40,6 @@ query {
               surname
             }
           }
-          
         }
       }
     }
@@ -49,7 +48,7 @@ query {
         icao
         iata
       }
-      
+
       longitudeDec
       latitudeDec
       name
@@ -121,7 +120,7 @@ query {
           easa
         }
       }
-    	fuelBeforeUplift
+      fuelBeforeUplift
       refuel
       blockFuel
       usedFuel
@@ -155,19 +154,18 @@ query {
         name
         country
       }
-       endAirport {
+      endAirport {
         code {
           icao
           iata
         }
         name
         country
-    	}
-     landingCount
+      }
+      landingCount
       apuHoursTotal
       apuCyclesTotal
       enginesCycles
-      
     }
   }
 }

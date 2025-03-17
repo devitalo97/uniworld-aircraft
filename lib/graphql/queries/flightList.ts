@@ -16,6 +16,7 @@ export const FLIGHT_LIST_QUERY = gql`
         aircraftNidList: $aircraftNidList
       }
     ) {
+      isCnl
       flightNid
       flightNo
       status
