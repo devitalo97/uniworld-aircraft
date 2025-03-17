@@ -136,7 +136,6 @@ export function FlightTable({ flightList }: { flightList: Flight[] }) {
             // const flightStatus = flight.status || "UNKNOWN";
             // const operationalStatus = flight.flightWatch?.statusId || "UNKNOWN";
             const status = flight.flightWatch?.statusId || flight.status;
-            console.log("status", status);
             return (
               <TableRow
                 key={flight.flightNid}
