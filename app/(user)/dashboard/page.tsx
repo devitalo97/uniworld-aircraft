@@ -176,7 +176,8 @@ export default async function Dashboard(params: Params) {
         <AreaChart
           data={flightsByDateAndType} // Ensure this is correct
           nameKey="date"
-          numericKeys={["HP1939", "HP1938"]} // Ensure the keys match
+          // numericKeys={["HP1939", "HP1938", "N701PE"]} // Ensure the keys match
+          numericKeys={["B73F", "B722", "B734"]} // Ensure the keys match
           title="Flights per Day by Aircraft Type"
           description="Daily evolution of flights stacked by registration"
           fillOpacity={0.3}

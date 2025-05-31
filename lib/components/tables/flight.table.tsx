@@ -107,9 +107,9 @@ const clientStatusMap: Record<
     className: "bg-gray-400",
   },
   DA: {
-    icon: <XCircle className="text-gray-500" size={18} />,
-    label: "DA",
-    className: "bg-gray-400",
+    icon: <AlertTriangle className="text-yellow-500" size={18} />,
+    label: "Delayed",
+    className: "bg-yellow-400",
   },
 };
 
